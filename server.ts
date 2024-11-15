@@ -3,7 +3,6 @@ import { rateLimit } from 'express-rate-limit'
 import dotenv from "dotenv";
 import { debug } from "util";
 import sequelize from "./config/config";
-import accountRoutes from "./routes/accountRoutes";
 import contentRoutes from "./routes/contentRoutes";
 import cors from "cors";
 
@@ -13,7 +12,7 @@ const app: Express = express();
 const port = process.env.PORT || 4000;
 const limiter = rateLimit({
 	windowMs: 15 * 60 * 1000,
-	limit: 100,
+	limit: 10000,
 	standardHeaders: true,
 	legacyHeaders: false,
 	message: async (req: Request, res: Response) => {
@@ -27,7 +26,6 @@ app.use(express.json());
 app.use(limiter);
 
 // Routes
-app.use('/api', accountRoutes);
 app.use('/api', contentRoutes);
 
 const server = app.listen(port, async () => {
