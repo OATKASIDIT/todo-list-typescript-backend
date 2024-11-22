@@ -3,7 +3,7 @@ import sequelize from "../config/config";
 import { DataTypes } from "sequelize";
 
 // Models
-const Content = sequelize.define('content', {
+const Content = sequelize.define("content", {
 	data: {
 		type: DataTypes.STRING,
 		allowNull: false,
@@ -36,7 +36,7 @@ const postContent = async (req: Request, res: Response) => {
 const putContent = async (req: Request, res: Response) => {
 	const { id, data } = req.body;
 	if(!id || !data){
-		return res.status(400).json({ error: 'ID and data are required'});
+		return res.status(400).json({ error: "ID and data are required."});
 	}
 	const t = await sequelize.transaction();
 	try {
@@ -58,7 +58,7 @@ const putContent = async (req: Request, res: Response) => {
 const deleteContent = async (req: Request, res: Response) => {
 	const { id } = req.body;
 	if(!id){
-		return res.status(400).json({ error: 'ID is required'});
+		return res.status(400).json({ error: "ID is required."});
 	}
 	const t = await sequelize.transaction();
 	try {

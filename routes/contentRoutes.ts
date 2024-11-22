@@ -1,15 +1,16 @@
 import express from "express";
 import { getContentController, postContentController, putContentController, deleteContentController, deleteAllContentController } from "../controllers/contentController";
+import { authenticate } from "../middleware/authenticate"
 const router = express.Router();
 
-router.get('/content', getContentController);
+router.get("/content", authenticate, getContentController);
 
-router.post('/content', postContentController);
+router.post("/content", authenticate, postContentController);
 
-router.put('/content', putContentController);
+router.put("/content", authenticate, putContentController);
 
-router.delete('/content', deleteContentController);
+router.delete("/content", authenticate, deleteContentController);
 
-router.delete('/all-content', deleteAllContentController);
+router.delete("/all-content", authenticate, deleteAllContentController);
 
 export default router;
